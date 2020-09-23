@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html text-center>
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+    
+        $(function () {
+            var result = $('#result');
+            var haserror = false;
+            $('.ac').click(function (e) {
+                $('.num,.func').show();
+            });
+            $('.num').click(function (e) {
+                if (haserror) {
+                    result.text('');
+                    haserror = false;
+                }
+                let input = result.text() + $(this).data('input');
+                result.text(input);
+            });
+            $('.func').click(function (e) {
+                let para = $(this).data('input');
+                switch (para) {
+                    case 'c': {
+                        result.text('');
+                        haserror = false;
+                    }; break;
+                    case 'cal': {
+                        try {
+                            let cal = eval(result.text());
+                            result.text(cal);
+                            haserror = false;
+                        } catch (err) {
+                            result.text(err);
+                            haserror = true;
+                        }
+                    }; break;
+                }
+            });
+            $('.num,.func').hide();
+        });
+
+    </script>
+</head>
+
+<body>
+    <h4><a href="https://www.youtube.com/watch?v=z6DJY6D0QuQ" text-center>Cr:Niyom Chamaree</a></h4><br>
+    <div class="container">
+        <p class="title">Calculator</p>
+        <div class="row">
+            <div class="col-lg-6">
+                <span  id="result"  class="form-control text-right mb-2"></span>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-6">
+                <button class="btn btn-danger mb-2 ac" data-input="on">AC</button>&nbsp;
+                <button class="btn btn-warning mb-2 func" data-input="c">C</button>
+
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-6">
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="7">7</button>
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="8">8</button>
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="9">9</button>
+                <button class="btn btn-info mb-2 btn-lg num" data-input="+">+</button>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-6">
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="4">4</button>
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="5">5</button>
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="6">6</button>
+                <button class="btn btn-info mb-2 btn-lg num" data-input="-">-</button>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-lg-6">
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="1">1</button>
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="2">2</button>
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="3">3</button>
+                <button class="btn btn-info mb-2 btn-lg num" data-input="*">x</button>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-6">
+                <button class="btn btn-primary mb-2 btn-lg num" data-input="0">0</button>
+                <button class="btn btn-primary mb-2 btn-lg num" data-input=".">.</button>
+                <button class="btn btn-info mb-2 btn-lg num" data-input="/">%</button>
+                <button class="btn btn-success mb-2 btn-lg func" data-input="cal">=</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
